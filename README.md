@@ -1,6 +1,8 @@
-# Codex × Obsidian Engineering Journal
+# Codex Fieldnotes
 
 [English](README.en.md) · 简体中文
+
+**让 Codex 记住开发经验，让你读懂项目。**
 
 让 Codex 在开发前查阅相关经验，在开发后把关键决策、排查过程和验证结果整理成 Obsidian 笔记。通过聊天开启解释模式，还能把工程记录变成理解项目的阅读入口。
 
@@ -11,10 +13,10 @@
 复制下面这段话，发给你电脑上的 Codex：
 
 ```text
-请阅读 https://github.com/haixianma422-maker/C-obsidian/blob/main/README.md，按照安装说明，在我的 Windows 电脑上安装并配置 C-obsidian。先检查环境和已有安装，保留现有配置与笔记，完成可执行的验证，并告诉我需要亲自完成的登录和 Hook 信任步骤。
+请阅读 https://github.com/haixianma422-maker/codex-fieldnotes/blob/main/README.md，按照安装说明，在我的 Windows 电脑上安装并配置 Codex Fieldnotes。先检查环境和已有安装，保留现有配置与笔记，完成可执行的验证，并告诉我需要亲自完成的登录和 Hook 信任步骤。
 ```
 
-Codex 可按下文步骤检查依赖、获取源码、初始化专用 Vault 并安装 Hooks 与 Skill。仓库目前为私有，需要你的 GitHub 账号有访问权限；Hook 信任由你本人审核。已经安装时先核对状态和版本，再决定是否更新。安装结果应分别核对环境检查、隔离测试，以及已注册项目聊天中的实际采集和发布回执。
+Codex 可按下文步骤检查依赖、获取源码、初始化专用 Vault 并安装 Hooks 与 Skill。Hook 信任由你本人审核；访问私有仓库时需要相应的 GitHub 权限。已经安装时先核对状态和版本，再决定是否更新。安装结果应分别核对环境检查、隔离测试，以及已注册项目聊天中的实际采集和发布回执。
 
 手动安装步骤见[安装](#安装)。
 
@@ -60,7 +62,7 @@ Hooks 提供触发和证据，Codex 使用 Skill 判断哪些内容值得记录�
 在 PowerShell 中执行，`python` 应指向 Python 3.13：
 
 ```powershell
-git clone https://github.com/haixianma422-maker/C-obsidian.git D:\Computer-Science\C-obsidian
+git clone https://github.com/haixianma422-maker/codex-fieldnotes.git D:\Computer-Science\C-obsidian
 Set-Location D:\Computer-Science\C-obsidian
 python --version
 python bootstrap.py init

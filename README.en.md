@@ -1,6 +1,8 @@
-# Codex × Obsidian Engineering Journal
+# Codex Fieldnotes
 
 English · [简体中文](README.md)
+
+**Engineering journals and lesson recall for Codex, stored in Obsidian.**
 
 Help Codex consult relevant lessons before development and turn decisions, debugging sessions, and verified milestones into Obsidian notes. Switch to explanatory mode in chat to build a reading guide for understanding the project.
 
@@ -11,10 +13,10 @@ The project uses the Python 3.13 standard library and stores its data locally. C
 Copy this prompt into Codex running on your computer:
 
 ```text
-Read https://github.com/haixianma422-maker/C-obsidian/blob/main/README.en.md and follow its instructions to install and configure C-obsidian on my Windows computer. Check the environment and any existing installation first, preserve my configuration and notes, run the applicable verification, and tell me which sign-in and Hook-trust steps I need to complete personally.
+Read https://github.com/haixianma422-maker/codex-fieldnotes/blob/main/README.en.md and follow its instructions to install and configure Codex Fieldnotes on my Windows computer. Check the environment and any existing installation first, preserve my configuration and notes, run the applicable verification, and tell me which sign-in and Hook-trust steps I need to complete personally.
 ```
 
-Codex can follow the steps below to check dependencies, obtain the source, initialize a dedicated Vault, and install the Hooks and Skill. This repository is private, so your GitHub account needs access. Review Hook trust yourself. For an existing installation, check its state and version before deciding whether to update. Verify environment checks, isolated tests, and actual capture and publication receipts in a registered project chat separately.
+Codex can follow the steps below to check dependencies, obtain the source, initialize a dedicated Vault, and install the Hooks and Skill. Review Hook trust yourself. Access to a private repository requires the corresponding GitHub permissions. For an existing installation, check its state and version before deciding whether to update. Verify environment checks, isolated tests, and actual capture and publication receipts in a registered project chat separately.
 
 For manual setup, see [Installation](#installation).
 
@@ -60,7 +62,7 @@ The installation policy and bundled Skill currently use `D:\Computer-Science\C-o
 Run in PowerShell with `python` pointing to Python 3.13:
 
 ```powershell
-git clone https://github.com/haixianma422-maker/C-obsidian.git D:\Computer-Science\C-obsidian
+git clone https://github.com/haixianma422-maker/codex-fieldnotes.git D:\Computer-Science\C-obsidian
 Set-Location D:\Computer-Science\C-obsidian
 python --version
 python bootstrap.py init
