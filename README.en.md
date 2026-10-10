@@ -6,6 +6,18 @@ Help Codex consult relevant lessons before development and turn decisions, debug
 
 The project uses the Python 3.13 standard library and stores its data locally. Codex Hooks and a Skill drive the workflow; Obsidian displays ordinary Markdown, wiki links, and its native graph.
 
+## Install with Codex
+
+Copy this prompt into Codex running on your computer:
+
+```text
+Read https://github.com/haixianma422-maker/C-obsidian/blob/main/README.en.md and follow its instructions to install and configure C-obsidian on my Windows computer. Check the environment and any existing installation first, preserve my configuration and notes, run the applicable verification, and tell me which sign-in and Hook-trust steps I need to complete personally.
+```
+
+Codex can follow the steps below to check dependencies, obtain the source, initialize a dedicated Vault, and install the Hooks and Skill. This repository is private, so your GitHub account needs access. Review Hook trust yourself. For an existing installation, check its state and version before deciding whether to update. Verify environment checks, isolated tests, and actual capture and publication receipts in a registered project chat separately.
+
+For manual setup, see [Installation](#installation).
+
 ## Features
 
 - **Targeted recall:** SQLite FTS5 searches task keywords, returning up to 3 cards within 2,400 characters by default. Results favor the current project; cross-project results require explicitly reusable lessons.
