@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "language": "zh-CN",
+  "vault": "D:\\Computer-Science\\C-obsidian\\Test-Vault",
+  "projects": {
+    "engineering-journal": {
+      "name": "工程经验记录系统",
+      "root": "D:\\Computer-Science\\C-obsidian",
+      "output": "Engineering/Projects/engineering-journal",
+      "note_mode": "concise"
+    },
+    "demo-project": {
+      "name": "验收示例项目",
+      "root": "D:\\Computer-Science\\C-obsidian\\demo-project",
+      "output": "Engineering/Projects/demo-project"
+    }
+  }
+}

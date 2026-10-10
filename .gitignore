@@ -1,0 +1,35 @@
+# Local configuration and engineering history
+/projects.json
+/projects.pending.json
+/events/
+/outbox/
+/state/
+/Test-Vault/
+/Engineering-Vault/
+/backups/
+/restore-drill*/
+/demo-project/acceptance-records/
+
+# Python and editors
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# Credentials and local overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Machine-specific reports, transcripts and screenshots
+/docs/*.json
+/docs/*.jsonl
+/docs/*.png
+/docs/implementation-status.md
+/docs/reviews/

@@ -1,0 +1,409 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alternatives": {
+      "items": {
+        "maxLength": 12000,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "attempts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "maxLength": 12000,
+            "type": "string"
+          },
+          "evidence_ids": {
+            "items": {
+              "maxLength": 200,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 50,
+            "type": "array"
+          },
+          "outcome": {
+            "maxLength": 12000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "outcome",
+          "evidence_ids"
+        ],
+        "type": "object"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "completed": {
+      "items": {
+        "maxLength": 12000,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "constraints": {
+      "items": {
+        "maxLength": 12000,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "context": {
+      "maxLength": 12000,
+      "type": "string"
+    },
+    "created": {
+      "maxLength": 200,
+      "minLength": 1,
+      "type": "string"
+    },
+    "decision": {
+      "maxLength": 12000,
+      "type": "string"
+    },
+    "entry_id": {
+      "pattern": "[A-Za-z0-9][A-Za-z0-9_-]{0,79}",
+      "type": "string"
+    },
+    "environment": {
+      "maxLength": 12000,
+      "type": "string"
+    },
+    "event_ids": {
+      "items": {
+        "pattern": "[a-f0-9]{32}",
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "commit": {
+            "pattern": "[a-f0-9]{7,40}",
+            "type": "string"
+          },
+          "id": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "source",
+              "artifact",
+              "tool_result"
+            ],
+            "type": "string"
+          },
+          "observed_at": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "[a-f0-9]{64}",
+            "type": "string"
+          },
+          "summary": {
+            "maxLength": 12000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "path",
+          "sha256",
+          "kind",
+          "observed_at",
+          "summary"
+        ],
+        "type": "object"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "explanation": {
+      "additionalProperties": false,
+      "properties": {
+        "change_role": {
+          "maxLength": 12000,
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 50,
+          "type": "array"
+        },
+        "example": {
+          "maxLength": 12000,
+          "type": "string"
+        },
+        "flow": {
+          "items": {
+            "maxLength": 12000,
+            "type": "string"
+          },
+          "maxItems": 50,
+          "type": "array"
+        },
+        "project_goal": {
+          "maxLength": 12000,
+          "type": "string"
+        },
+        "terms": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "meaning": {
+                "maxLength": 12000,
+                "type": "string"
+              },
+              "term": {
+                "maxLength": 200,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "term",
+              "meaning"
+            ],
+            "type": "object"
+          },
+          "maxItems": 50,
+          "type": "array"
+        }
+      },
+      "required": [
+        "project_goal",
+        "change_role",
+        "flow",
+        "evidence_ids"
+      ],
+      "type": "object"
+    },
+    "fingerprint": {
+      "maxLength": 200,
+      "minLength": 1,
+      "type": "string"
+    },
+    "fix": {
+      "maxLength": 12000,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "justification": {
+      "maxLength": 12000,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lessons": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "conditions": {
+            "maxLength": 12000,
+            "type": "string"
+          },
+          "reusable": {
+            "type": "boolean"
+          },
+          "text": {
+            "maxLength": 12000,
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "conditions",
+          "reusable"
+        ],
+        "type": "object"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "next_steps": {
+      "items": {
+        "maxLength": 12000,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "note_name": {
+      "maxLength": 160,
+      "type": "string"
+    },
+    "open_issues": {
+      "items": {
+        "maxLength": 12000,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "project_id": {
+      "pattern": "[A-Za-z0-9][A-Za-z0-9_-]{0,79}",
+      "type": "string"
+    },
+    "related_entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "entry_id": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_-]{0,79}",
+            "type": "string"
+          },
+          "project_id": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_-]{0,79}",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "entry_id"
+        ],
+        "type": "object"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "root_cause": {
+      "maxLength": 12000,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "root_cause_status": {
+      "enum": [
+        "established",
+        "hypothesis",
+        "unknown"
+      ],
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "status": {
+      "enum": [
+        "verified",
+        "provisional",
+        "unresolved"
+      ],
+      "type": "string"
+    },
+    "summary": {
+      "maxLength": 12000,
+      "type": "string"
+    },
+    "symptom": {
+      "maxLength": 12000,
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 200,
+      "minLength": 1,
+      "type": "string"
+    },
+    "tradeoffs": {
+      "items": {
+        "maxLength": 12000,
+        "type": "string"
+      },
+      "maxItems": 50,
+      "type": "array"
+    },
+    "type": {
+      "enum": [
+        "decision",
+        "pitfall",
+        "milestone"
+      ],
+      "type": "string"
+    },
+    "updated": {
+      "maxLength": 200,
+      "minLength": 1,
+      "type": "string"
+    },
+    "verification": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 50,
+          "type": "array"
+        },
+        "result": {
+          "enum": [
+            "passed",
+            "failed",
+            "not_run",
+            "not_applicable"
+          ],
+          "type": "string"
+        },
+        "summary": {
+          "maxLength": 12000,
+          "type": "string"
+        }
+      },
+      "required": [
+        "result",
+        "evidence_ids",
+        "summary"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "entry_id",
+    "type",
+    "title",
+    "summary",
+    "status",
+    "fingerprint",
+    "context",
+    "verification",
+    "evidence",
+    "event_ids",
+    "lessons",
+    "related_entries"
+  ],
+  "type": "object"
+}
