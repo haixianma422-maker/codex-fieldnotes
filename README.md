@@ -97,6 +97,28 @@ Give Codex a development task as usual. An optional reminder is:
 
 Ordinary questions and mechanical edits generally do not produce separate notes. Historical lessons help select verification steps; changed sources, uncertain causes, and unrun tests retain their respective status.
 
+#### Optional semantic recall
+
+Keyword recall misses paraphrases and queries in another language. With [FastEmbed](https://github.com/qdrant/fastembed) installed, add `semantic_model` to `projects.json` and rebuild the index. Recall then ranks cards by FTS5 keywords and by local embedding similarity, and merges the two lists with reciprocal rank fusion (RRF). The model runs locally; after its one-time download, no record text leaves the machine.
+
+```powershell
+python -m pip install fastembed
+# projects.json: "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+python journal.py index
+```
+
+Without the key, or when the model cannot load, recall stays keyword-only and reports `semantic_error`; publishing is unaffected. Each recall starts a new process that loads the model: about 4.5 s per call versus 0.6 s keyword-only on the author's Windows machine.
+
+`tools/eval_recall.py` copies a registry's accepted records to a temporary directory and reports Hit@k and MRR. On 46 labelled queries over the author's 62 records:
+
+| Ranking | Hit@3 | MRR@10 | Cross-language Hit@3 |
+| --- | --- | --- | --- |
+| Keyword (FTS5) | 0.78 | 0.748 | 0.33 |
+| Hybrid, `bge-small-zh-v1.5` | 0.89 | 0.812 | 0.67 |
+| Hybrid, multilingual MiniLM | 0.89 | 0.822 | 0.78 |
+
+The author wrote the queries while knowing the records, so this is a small single-annotator benchmark. On 6 queries with no relevant record, hybrid recall returned 3 unrelated cards each time and keyword recall 2.33; relevant and unrelated cosine scores overlapped, so no similarity threshold is applied.
+
 ### 3. Choose the level of explanation
 
 > Enable explanatory mode for this project. Include its goal, module relationships, execution flow, and reasons for the change.
@@ -190,7 +212,8 @@ bootstrap.py                 Initialization and global installation
 hook.py                      Codex lifecycle bridge
 journal.py                   Registration, recall, modes, collection, maintenance
 publisher.py                 Validation, publication, versions, receipts
-knowledge.py                 SQLite FTS5 index
+knowledge.py                 SQLite FTS5 index and RRF fusion
+semantic.py                  Optional local embedding search
 event_store.py               Pending-event pointers and acknowledgement
 journal_core.py / schema.py  Paths, locks, redaction, registry, draft structure
 process_runner.py            Test-process and descendant lifetime

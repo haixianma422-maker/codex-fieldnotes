@@ -101,6 +101,28 @@ python journal.py register my-project 'D:\Projects\MyProject' --name '我的项�
 
 普通问答和机械修改通常不产生独立笔记。历史经验用于帮助选择验证步骤；来源变化、未确认原因和未运行测试会保留相应状态。
 
+#### 可选：语义检索
+
+关键词检索找不到换了说法或换了语言的经验。安装 [FastEmbed](https://github.com/qdrant/fastembed) 后，在 `projects.json` 加入 `semantic_model` 并重建索引，检索会同时按 FTS5 关键词和本地向量相似度排序，再用倒数排名融合（RRF）合并两份结果。模型在本机运行，首次下载后记录文本不离开本机。
+
+```powershell
+python -m pip install fastembed
+# projects.json: "semantic_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+python journal.py index
+```
+
+未配置该字段或模型无法加载时，检索保持纯关键词并返回 `semantic_error`，发布不受影响。每次检索都会新开进程加载模型：在作者的 Windows 电脑上单次约 4.5 秒，纯关键词约 0.6 秒。
+
+`tools/eval_recall.py` 把注册表中的已接受记录复制到临时目录后计算 Hit@k 和 MRR。在作者 62 条记录、46 个标注查询上：
+
+| 排序方式 | Hit@3 | MRR@10 | 跨语言 Hit@3 |
+| --- | --- | --- | --- |
+| 关键词（FTS5） | 0.78 | 0.748 | 0.33 |
+| 混合，`bge-small-zh-v1.5` | 0.89 | 0.812 | 0.67 |
+| 混合，多语言 MiniLM | 0.89 | 0.822 | 0.78 |
+
+查询由熟悉这些记录的作者编写，属于小规模、单人标注的评测。另有 6 个没有相关记录的查询：混合检索每次都返回 3 张无关卡片，关键词检索平均 2.33 张；相关与无关卡片的余弦分数重叠，因此没有设置相似度阈值。
+
 ### 3. 切换解释模式
 
 > 对当前项目开启解释模式，记录目标、模块关系、执行流程和修改原因。
@@ -187,7 +209,8 @@ bootstrap.py                 初始化与全局安装
 hook.py                      Codex 生命周期桥接
 journal.py                   注册、检索、模式、采集与维护命令
 publisher.py                 验证、发布、版本与回执
-knowledge.py                 SQLite FTS5 索引
+knowledge.py                 SQLite FTS5 索引与 RRF 融合
+semantic.py                  可选的本地向量检索
 event_store.py               未处理事件指针与 ACK
 journal_core.py / schema.py  路径、锁、脱敏、配置与草稿结构
 process_runner.py            测试进程与子进程生命周期

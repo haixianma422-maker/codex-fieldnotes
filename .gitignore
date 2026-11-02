@@ -33,3 +33,6 @@ Thumbs.db
 /docs/*.png
 /docs/implementation-status.md
 /docs/reviews/
+
+# Evaluation data derived from local records
+/evaluation/local/
